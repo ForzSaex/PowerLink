@@ -5,18 +5,21 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 
 ## Recursos
 
-●Monitoramento detalhado do consumo de cada aparelho conectado ao dispositivo. Além da visualização das médias diárias, semanais e mensais através de um gráfico intuitivo.
+* Monitoramento detalhado do consumo de cada aparelho conectado ao dispositivo. Além da visualização das médias diárias, semanais e mensais através de um gráfico intuitivo.
 
-●Desligamento de cada aparelho conectado ao dispositivo individualmente.
+* Desligamento de cada aparelho conectado ao dispositivo individualmente.
 
-●Notificação em caso de sobrecargas nos aparelhos
+* Notificação em caso de sobrecargas nos aparelhos
 
-●Proteção contra sobrecargas.
+* Proteção contra sobrecargas.
 
-●Temporizador para desligamento do aparelho conectado.
+* Temporizador para desligamento do aparelho conectado.
 
 ## Observações
 
 1.Muitos desses recursos ainda não estão disponíveis, para ver quais deles já estão disponíveis, acesse o projeto disponível no próprio repositório.
 
 2.Outros recursos podem ser adicionados ao projeto futuramente.
+
+> [!NOTE]
+> Diariamente irei atualizar sobre o estado atual do desenvolvimento do projeto.
