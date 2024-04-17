@@ -3,7 +3,7 @@
 
 A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com um Esp32 para a coleta e manipulação de dados de tensão e corrente, afim de se obter um valor de potência consumido por um aparelho conectado à este dispositivo. Esses dados são enviados para o aplicativo através de um protocolo de comunicação HTTP (Hyper Text Transfer Protocol), onde o usuário poderá visualizar os dados coletados pelo dispositivo e realizar o desligamento de qualquer uma das portas através de um comando HTTP POST.
 
-##Recursos
+## Recursos
 
 ●Monitoramento detalhado do consumo de cada aparelho conectado ao dispositivo. Além da visualização das médias diárias, semanais e mensais através de um gráfico intuitivo.
 
@@ -15,7 +15,7 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 
 ●Temporizador para desligamento do aparelho conectado.
 
-##Observações
+## Observações
 
 1.Muitos desses recursos ainda não estão disponíveis, para ver quais deles já estão disponíveis, acesse o projeto disponível no próprio repositório.
 
