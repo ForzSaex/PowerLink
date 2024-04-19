@@ -1,37 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LiveChartsCore;
-using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.SkiaSharpView.Painting.Effects;
-using LiveChartsCore.SkiaSharpView.VisualElements;
-using SkiaSharp;
-using LiveChartsCore.Defaults;
-using System.Runtime.Serialization;
-using Tomada;
-using static Tomada.MainPage;
+﻿using static Tomada.MainPage;
 using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
-using System.ComponentModel;
-using System.Text.Json;
-using LiveChartsCore.SkiaSharpView.Drawing;
-using LiveChartsCore.VisualElements;
-using LiveChartsCore.SkiaSharpView.Extensions;
-using LiveChartsCore.Measure;
-using System.Drawing;
 using CommunityToolkit.Maui.Extensions;
-using Microsoft.Maui.Controls.Platform;
-using CommunityToolkit.Maui.Core.Extensions;
-using Microsoft.Maui.Animations;
-using Windows.ApplicationModel.VoiceCommands;
-using System.Collections.Specialized;
-using Windows.Networking.NetworkOperators;
-using static SkiaSharp.HarfBuzz.SKShaper;
-
 
 namespace Tomada
 {
@@ -55,9 +24,14 @@ namespace Tomada
                 Debug.WriteLine(ex.ToString());
             }
             DispName.Text = Settings.DispositivoA;
-
-
-
+            if (Settings.DispAStatus == true)
+            {
+                ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+            }
+            if (Settings.DispAStatus == false)
+            {
+                ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+            }
         }
 
         protected override async void OnAppearing()
@@ -74,37 +48,60 @@ namespace Tomada
             DadosCompartilhados.commandStatus = false;
         }
 
-        private async void SwitchEnviaComando1_Clicked(object sender, EventArgs e)
+        private void SwitchEnviaComando1_Clicked(object sender, EventArgs e)
         {
-            if(Settings.DispAStatus == true)
+
+            switch (opcao)
             {
-                ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+                case 1:
+                    if (Settings.DispAStatus == true)
+                    {
+                        ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+                    }
+                    if (Settings.DispAStatus == false)
+                    {
+                        ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+                        
+                    }
+                    Settings.DispAStatus = !Settings.DispAStatus;
+                    break;
+                case 2:
+                    if (Settings.DispBStatus == true)
+                    {
+                        ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+                    }
+                    if (Settings.DispBStatus == false)
+                    {
+                        ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+                    }
+                    Settings.DispBStatus = !Settings.DispBStatus;
+                    break;
+                case 3:
+                    if (Settings.DispCStatus == true)
+                    {
+                        ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+                    }
+                    if (Settings.DispCStatus == false)
+                    {
+                        ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+                    }
+                    Settings.DispCStatus = !Settings.DispCStatus;
+                    break;
+                case 4:
+                    if (Settings.DispDStatus == true)
+                    {
+                        ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+                    }
+                    if (Settings.DispDStatus == false)
+                    {
+                        ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+                    }
+                    Settings.DispDStatus = !Settings.DispDStatus;
+                    break;
             }
-            if(Settings.DispAStatus == false) 
-            {
-                ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
-            }
-            Settings.DispAStatus = !Settings.DispAStatus;            
             Debug.WriteLine(Settings.DispAStatus + " " + Settings.DispBStatus + " " + Settings.DispCStatus + " " + Settings.DispDStatus + "" + opcao);
         }
 
-        private void SwitchEnviaComando2_Clicked(object sender, EventArgs e)
-        {
-            Settings.DispBStatus = !Settings.DispBStatus;
-            Debug.WriteLine(Settings.DispAStatus + " " + Settings.DispBStatus + " " + Settings.DispCStatus + " " + Settings.DispDStatus + "" + opcao);
-        }
-
-        private void SwitchEnviaComando3_Clicked(object sender, EventArgs e)
-        {
-            Settings.DispCStatus = !Settings.DispCStatus;
-            Debug.WriteLine(Settings.DispAStatus + " " + Settings.DispBStatus + " " + Settings.DispCStatus + " " + Settings.DispDStatus + "" + opcao);
-        }
-
-        private void SwitchEnviaComando4_Clicked(object sender, EventArgs e)
-        {
-            Settings.DispDStatus = !Settings.DispDStatus;
-            Debug.WriteLine(Settings.DispAStatus + " " + Settings.DispBStatus + " " + Settings.DispCStatus + " " + Settings.DispDStatus + "" + opcao);
-        }
 
         private void updateName()
         {
@@ -151,28 +148,60 @@ namespace Tomada
             updateName();
         }
 
-        private void OpcaoA_Clicked(object sender, EventArgs e)
+        private async void OpcaoA_Clicked(object sender, EventArgs e)
         {
             opcao = 1;
             DispName.Text = Settings.DispositivoA;
+            if (Settings.DispAStatus == true)
+            {
+                await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+            }
+            if (Settings.DispAStatus == false)
+            {
+                await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+            }
         }
 
-        private void OpcaoB_Clicked(object sender, EventArgs e)
+        private async void OpcaoB_Clicked(object sender, EventArgs e)
         {
             opcao = 2;
             DispName.Text = Settings.DispositivoB;
+            if (Settings.DispBStatus == true)
+            {
+                await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+            }
+            if (Settings.DispBStatus == false)
+            {
+                await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+            }
         }
 
-        private void OpcaoC_Clicked(object sender, EventArgs e)
+        private async void OpcaoC_Clicked(object sender, EventArgs e)
         {
             opcao = 3;
             DispName.Text = Settings.DispositivoC;
+            if (Settings.DispCStatus == true)
+            {
+                await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+            }
+            if (Settings.DispCStatus == false)
+            {
+                await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+            }
         }
 
-        private void OpcaoD_Clicked(object sender, EventArgs e)
+        private async void OpcaoD_Clicked(object sender, EventArgs e)
         {
             opcao = 4;
             DispName.Text = Settings.DispositivoD;
+            if (Settings.DispDStatus == true)
+            {
+                await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFADFF2F"), 1, 700, Easing.CubicInOut);
+            }
+            if (Settings.DispDStatus == false)
+            {
+                await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
+            }
         }
     }
 

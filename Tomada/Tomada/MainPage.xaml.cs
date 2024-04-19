@@ -1,11 +1,6 @@
 ﻿using System.Diagnostics;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.Defaults;
-using Microsoft.Maui.Controls.PlatformConfiguration;
-using Microsoft.Maui.Media;
-using System.Reflection.Emit;
-using System.Text.Json;
-using System.Data;
 
 namespace Tomada
 {
@@ -26,6 +21,10 @@ namespace Tomada
 
         public MainPage()
         {
+            _timer = new System.Timers.Timer(TimeSpan.FromSeconds(_intervalInSeconds).TotalMilliseconds);
+            _timer.Elapsed += async (sender, e) => await OnTimerElapsed();
+            _timer.AutoReset = true;
+            _timer.Start();
             InitializeComponent();
             client = new HttpClient();
             DadosCompartilhados.status = true;
@@ -40,15 +39,12 @@ namespace Tomada
         {
             try
             {
-                var Esp32Url = "";
+                var Esp32Url = "https://www.youtube.com/asdcxccaw";
                 HttpResponseMessage httpResponseMessage = await client.GetAsync(Esp32Url);
 
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
-                    _timer = new System.Timers.Timer(TimeSpan.FromSeconds(_intervalInSeconds).TotalMilliseconds);
-                    _timer.Elapsed += async (sender, e) => await OnTimerElapsed();
-                    _timer.AutoReset = true;
-                    _timer.Start();
+
                 }
                 else
                 {
@@ -63,13 +59,12 @@ namespace Tomada
             {
                 
                 DadosCompartilhados.valorCompartilhado = 5;
+                RoomName.Text = ex.ToString();
             }
         }
 
         public void FirstTimeOpen()
         {
-            Debug.WriteLine(Settings.IsFirstTimeOpen);
-            
             if (Settings.IsFirstTimeOpen == true)
             {
                 Settings.IsFirstTimeOpen = false;
@@ -129,18 +124,6 @@ namespace Tomada
                             }
                         }
                     }
-                    else if (!File.Exists(pathfileDate))
-                    {
-                        using (FileStream fs = new FileStream(pathfileDate, FileMode.Create))
-                        {
-                            using (BinaryWriter bw = new BinaryWriter(fs, System.Text.Encoding.UTF8, false))
-                            {
-                                bw.Write(DadosCompartilhados.day.ToString()); // Dia para próxima leitura
-                                bw.Write(DadosCompartilhados.week.ToString()); // Dia para próxima leitura
-                                bw.Write(DadosCompartilhados.month.ToString()); // Dia para próxima leitura
-                            }
-                        }
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -182,19 +165,6 @@ namespace Tomada
                             }
                         }
                     }
-                    if (!File.Exists(pathfileDate))
-                    {
-                        using (FileStream fs = new FileStream(pathfileDate, FileMode.Create))
-                        {
-                            using (BinaryWriter bw = new BinaryWriter(fs, System.Text.Encoding.UTF8, false))
-                            {
-                                bw.Write(DadosCompartilhados.day.ToString()); // Dia para próxima leitura
-                                bw.Write(DadosCompartilhados.week.ToString()); // Dia para próxima leitura
-                                bw.Write(DadosCompartilhados.month.ToString()); // Dia para próxima leitura
-                            }
-                        }
-                    }
-
                 }
                 catch(Exception ex)
                 {
@@ -208,9 +178,9 @@ namespace Tomada
 
         public void GetTime()
         {
-            DadosCompartilhados.day = System.DateTime.Now.AddDays(1);
-            DadosCompartilhados.week = System.DateTime.Now.AddDays(7);
-            DadosCompartilhados.month = System.DateTime.Now.AddDays(31);
+            Settings.GetDay = System.DateTime.Now.AddDays(1).ToString();
+            Settings.GetWeek = System.DateTime.Now.AddDays(7).ToString();
+            Settings.GetMonth = System.DateTime.Now.AddDays(31).ToString();
         }
 
 
@@ -236,39 +206,13 @@ namespace Tomada
                 get { return commandStatus; }
                 set { commandStatus = value; }
             }
-
-            public static DateTime day;
-            public static DateTime Day
-            {
-                get { return day; }
-                set { day = value; }
-            }
-
-            public static DateTime week;
-            public static DateTime Week
-            {
-                get { return week; }
-                set { week = value; }
-            }
-
-            public static DateTime month;
-            public static DateTime Month
-            {
-                get { return month; }
-                set { month = value; }
-            }
-
-
-
-
-
         }
 
         public async Task OnTimerElapsed()
         {
             try
             {
-                var Esp32Url = "https://";
+                var Esp32Url = "https://www.youtube.com/asdcxccaw";
                 HttpResponseMessage httpResponseMessage = await client.GetAsync(Esp32Url);
 
                 if (httpResponseMessage.IsSuccessStatusCode)
@@ -284,10 +228,6 @@ namespace Tomada
             catch (Exception ex)
             {
             }
-
-            MainThread.BeginInvokeOnMainThread(() => {
-                ConsumoAtual.Text = "Consumo atual:" + DadosCompartilhados.valorCompartilhado.ToString() + "W";
-            });
         }
 
         protected override async void OnDisappearing()
@@ -351,6 +291,9 @@ namespace Tomada
         private const string Dispositivo2 = "Dispositivo2";
         private const string Dispositivo3 = "Dispositivo3";
         private const string Dispositivo4 = "Dispositivo4";
+        private const string Day = "01/01/2024 00:00:00";
+        private const string Week = "01/01/2024 00:00:00";
+        private const string Month = "01/01/2024 00:00:00";
 
         public static bool IsFirstTimeOpen
         {
@@ -410,6 +353,24 @@ namespace Tomada
         {
             get => Preferences.Get(Dispositivo4, "Dispositivo4");
             set => Preferences.Set(Dispositivo4, value);
+        }
+
+        public static string GetDay
+        {
+            get => Preferences.Get(Day, "01/01/2024 00:00:00");
+            set => Preferences.Set(Day, value);
+        }
+
+        public static string GetWeek
+        {
+            get => Preferences.Get(Week, "01/01/2024 00:00:00");
+            set => Preferences.Set(Week, value);
+        }
+
+        public static string GetMonth
+        {
+            get => Preferences.Get(Month, "01/01/2024 00:00:00");
+            set => Preferences.Set(Month, value);
         }
 
     }

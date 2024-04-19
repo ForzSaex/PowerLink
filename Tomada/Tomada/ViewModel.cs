@@ -1,28 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.SkiaSharpView.Painting.Effects;
-using LiveChartsCore.SkiaSharpView.VisualElements;
 using SkiaSharp;
 using LiveChartsCore.Defaults;
-using System.Runtime.Serialization;
-using Tomada;
 using static Tomada.MainPage;
 using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
 using System.ComponentModel;
-using System.Text.Json;
-using LiveChartsCore.SkiaSharpView.Drawing;
-using LiveChartsCore.VisualElements;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.Measure;
-using System.Drawing;
+using Tomada;
 
 
 namespace ViewModelsSamples.Lines.Basic;
@@ -63,28 +50,9 @@ public class ViewModel
         _timer.AutoReset = true;
         _timer.Start();
 
-        if(File.Exists("C:\\Users\\creep\\AppData\\Local\\PowerLink\\Date.dat"))
-        {
-            try
-            {
-                using (var md = File.Open("C:\\Users\\creep\\AppData\\Local\\PowerLink\\Date.dat", FileMode.Open))
-                {
-                    using (BinaryReader bw = new BinaryReader(md, System.Text.Encoding.UTF8, false))
-                    {
-                        setDayTime = DateTime.Parse(bw.ReadString());
-                        setWeekTime = DateTime.Parse(bw.ReadString());
-                        setMonthTime = DateTime.Parse(bw.ReadString());
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
-            }
-        }
-
-
-
+        setDayTime = DateTime.Parse(Settings.GetDay);
+        setWeekTime = DateTime.Parse(Settings.GetWeek);
+        setMonthTime = DateTime.Parse(Settings.GetMonth);
         ObservableValue1 = new ObservableValue { Value = 0 };
         ObservableValue2 = new ObservableValue { Value = 0 };
         ObservableValue3 = new ObservableValue { Value = 0 };
@@ -208,7 +176,7 @@ public class ViewModel
 
     public async Task ReadDayData()
         {
-        if(System.DateTime.Now == setDayTime)
+        if(System.DateTime.Now.CompareTo(setDayTime) >= 1)
         {
             try
             {
@@ -224,6 +192,7 @@ public class ViewModel
                         _Diario.Add(new DateTimePoint(DateTime.Now, valorAt));
                         if (_Diario.Count > 11) _Diario.RemoveAt(0);
                         _XcustomAxis.CustomSeparators = GetSeparators();
+                        Settings.GetDay = System.DateTime.Now.AddDays(1).ToString();
                     }
                 }
                 else
@@ -247,20 +216,21 @@ public class ViewModel
 
     public async Task ReadWeekData()
     {
-        if (System.DateTime.Now == setWeekTime)
+        if (System.DateTime.Now.CompareTo(setWeekTime) >= 1)
         {
             try
             {
                 url = "Https://youtube.com";
                 HttpResponseMessage httpResponseMessage = await client.GetAsync(url);
 
-                if (httpResponseMessage.IsSuccessStatusCode && System.DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
+                if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     string value = await httpResponseMessage.Content.ReadAsStringAsync();
                     lock (Sync)
                     {
                         _Semanal.Add(new DateTimePoint(DateTime.Now, valorAt));
                         if (_Semanal.Count > 11) _Semanal.RemoveAt(0);
+                        Settings.GetWeek = System.DateTime.Now.AddDays(7).ToString();
                     }
 
 
@@ -280,7 +250,7 @@ public class ViewModel
 
     public async Task ReadMonthData()
     {
-        if(System.DateTime.Now == setMonthTime)
+        if(System.DateTime.Now.CompareTo(setMonthTime) >= 1)
         {
             try
             {
@@ -295,6 +265,7 @@ public class ViewModel
                         _Mensal.Add(valueFinal);
                     if (_Mensal.Count > 12) _Mensal.Clear();
                     _XcustomAxis.CustomSeparators = GetSeparators();
+                    Settings.GetMonth = System.DateTime.Now.AddDays(31).ToString();
                 }
 
             }

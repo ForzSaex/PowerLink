@@ -13,9 +13,8 @@
     FlyoutBackgroundColor="Black"
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="False"
-    Shell.BackgroundColor="#141940">
-
-  
+    Shell.BackgroundColor="#141940"
+    FlyoutBackdrop="Black">
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
