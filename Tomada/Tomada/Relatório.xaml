@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tomada.Relatório"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:local="clr-namespace:Tomada"
+             xmlns:vms="clr-namespace:ViewModelsSamples.Lines.Basic;assembly=Tomada">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#141940"
+                          Offset="0.0" />
+            <GradientStop Color="#070917"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+
+    <ContentPage.BindingContext>
+        <vms:ViewModel/>
+    </ContentPage.BindingContext>
+    
+
+
+    <ScrollView >
+
+        <StackLayout>
+
+            <ScrollView Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Text="Atual" WidthRequest="200" BackgroundColor="White" CornerRadius="20" TextColor="Black" Margin="5,0" Clicked="Button_Clicked_1" x:Name="OpcaoA"/>
+                    <Button WidthRequest="200" BackgroundColor="White" CornerRadius="20" TextColor="Black" Text="Diario" Margin="5,0" Clicked="Button_Clicked" x:Name="OpcaoB"/>
+                    <Button Text="Semanal" WidthRequest="200" BackgroundColor="White" CornerRadius="20" TextColor="Black" Margin="5,0" Clicked="Button_Clicked_2" x:Name="OpcaoC"/>
+                    <Button WidthRequest="200" BackgroundColor="White" CornerRadius="20" TextColor="Black" Text="Mensal" Margin="5,0" Clicked="Button_Clicked_3" x:Name="OpcaoD"/>
+                </StackLayout>
+            </ScrollView>
+            <Grid Margin="0,200">
+                <Label Text="Tempo Real" TextColor="White" HorizontalOptions="Center" x:Name="Media" TranslationY="-150" FontSize="Large" FontFamily="JosefinSansThin"/>
+                <Label Text="" TextColor="White" HorizontalOptions="Center" x:Name="Erro" FontSize="50" FontFamily="JosefinSansThin" TranslationY="50"/>
+                <lvc:CartesianChart x:Name="Grafico"
+                        Series="{Binding Real}"
+                        XAxes="{Binding XAxes}"
+                        SyncContext="{Binding Sync}"
+                        WidthRequest="{Binding widthScreen}"
+                        HeightRequest="350"
+                        TranslationY="-100"
+                        Margin="0"
+                        VerticalOptions="Start"
+                        AnimationsSpeed="0"
+                        >
+                    <lvc:CartesianChart.BindingContext>
+                        <vms:ViewModel/>
+                    </lvc:CartesianChart.BindingContext>
+                </lvc:CartesianChart>
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

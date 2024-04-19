@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Tomada.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Tomada"
+    Shell.FlyoutBehavior="Flyout"
+    Title="DispositivoDeTomada"       BackgroundColor="Transparent"
+    ForegroundColor="White"
+    TitleColor="White"
+    DisabledColor="#0a1026"
+    UnselectedColor="#0a1026"
+    FlyoutBackgroundColor="Black"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="False"
+    Shell.BackgroundColor="#141940">
+
+  
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Inicio"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" 
+        Shell.PresentationMode="Animated"
+        IsEnabled="True"
+        IsVisible="True">
+            <Shell.TitleView>
+                <Label Text="Inicio"
+            FontFamily="JosefinSansThin"
+            TextColor="White"
+            HorizontalOptions="Start"
+            VerticalOptions="Center"
+                       TranslationX="10"
+                       FontSize="Large"/>
+            </Shell.TitleView>
+        </ShellContent>
+        <ShellContent
+        Title="Relatório"
+        Route="Relatório"
+        ContentTemplate="{DataTemplate local:Relatório}"
+        Shell.PresentationMode="Animated">
+            <Shell.TitleView>
+                <Label Text="Relatório"
+            FontFamily="JosefinSansThin"
+            TextColor="White"
+            HorizontalOptions="Start"
+            VerticalOptions="Center"
+                       TranslationX="10"
+                       FontSize="Large"/>
+            </Shell.TitleView>
+        </ShellContent>
+        <ShellContent
+        Title="Comandos"
+        Route="Comandos"
+        ContentTemplate="{DataTemplate local:Comandos}"
+        Shell.PresentationMode="Animated">
+            <Shell.TitleView>
+                <Label Text="Comandos"
+            FontFamily="JosefinSansThin"
+            TextColor="White"
+            HorizontalOptions="Start"
+            VerticalOptions="Center"
+                       TranslationX="10"
+                       FontSize="Large"/>
+            </Shell.TitleView>
+        </ShellContent>
+
+    </FlyoutItem>
+
+</Shell>

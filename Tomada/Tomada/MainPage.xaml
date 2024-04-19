@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tomada.MainPage"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:vwm="clr-namespace:ViewModelsSamples.Lines.Basic"
+             xmlns:local="clr-namespace:Tomada"
+             xmlns:vms="clr-namespace:ViewModelsSamples.Lines.Basic;assembly=Tomada">
+    
+    
+
+    <ContentPage.Background>
+
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#141940"
+                          Offset="0.0" />
+            <GradientStop Color="#070917"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+        
+    </ContentPage.Background>
+    
+
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="Transparent" 
+                               StatusBarStyle="LightContent"
+                               x:Name="BarraNotificacao"/>
+    </Page.Behaviors>
+
+    <ScrollView VerticalOptions="FillAndExpand" Orientation="Vertical">
+        <StackLayout x:Name="MainPageLayout">
+            <Label Text="Nome" 
+                   x:Name="RoomName" 
+                   FontFamily="JosefinSansThin" 
+                   FontAutoScalingEnabled="True" 
+                   HorizontalOptions="Center"
+                   FontSize="35" 
+                   Margin="10" 
+                   TranslationY="0" 
+                   TextColor="White"/>
+            <Button VerticalOptions="Start"
+                    WidthRequest="150"
+                    TranslationY="-52"
+                    Opacity="0.5"
+                    BackgroundColor="Transparent"
+                    Clicked="Button_Clicked_3"/>
+            <Label x:Name="ConsumoAtual" 
+                   Text="Consumo Atual: w" 
+                   FontAutoScalingEnabled="True" 
+                   FontSize="35" 
+                   HorizontalOptions="Center" 
+                   TranslationY="30"
+                   FontFamily="JosefinSansThin"
+                   TextColor="White"/>
+            <lvc:CartesianChart x:Name="Chart1"
+                        Series="{Binding Real}"
+                        XAxes="{Binding XAxes}"
+                        SyncContext="{Binding Sync}"
+                        WidthRequest="{OnPlatform WinUI=1500, Android=720, UWP=1500, MacCatalyst=1500}"
+                        HeightRequest="400"
+                        TranslationY="25"
+                        AnimationsSpeed="0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                    <lvc:CartesianChart.BindingContext>
+                        <vwm:ViewModel/>
+                    </lvc:CartesianChart.BindingContext>
+                </lvc:CartesianChart>
+
+
+            <Button BackgroundColor="White" 
+                    WidthRequest="250" 
+                    HeightRequest="40" 
+                    Clicked="Button_Clicked"
+                    TranslationY="150" 
+                    Text="Detalhes" 
+                    FontSize="20" 
+                    FontFamily="JosefinSansThin" 
+                    FontAutoScalingEnabled="True" 
+                    CornerRadius="20" 
+                    TextColor="Black"
+                    Pressed="Button_Pressed"
+                    x:Name="Detalhes"
+                    Released="Detalhes_Released"/>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
