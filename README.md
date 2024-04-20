@@ -15,6 +15,15 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 
 * Temporizador para desligamento do aparelho conectado.
 
+## Preview do aplicativo
+
+
+<img src="/folder/Screenshot_20240409-182957.jpg">
+
+<img src="/folder/Screenshot_20240409-183013.jpg">
+
+<img src="/folder/Screenshot_20240419-195640.jpg">
+
 ## Observações
 
 1.Muitos desses recursos ainda não estão disponíveis, para ver quais deles já estão disponíveis, acesse o projeto disponível no próprio repositório.
