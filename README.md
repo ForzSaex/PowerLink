@@ -24,6 +24,9 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 
 <img src="/folder/Screenshot_20240419-195640.jpg">
 
+> [!ALERT]
+> Essas imagens estão desatualizadas! elas não representam o produto final.
+
 ## Observações
 
 1.Muitos desses recursos ainda não estão disponíveis, para ver quais deles já estão disponíveis, acesse o projeto disponível no próprio repositório.
