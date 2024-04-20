@@ -24,7 +24,7 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 
 <img src="/folder/Screenshot_20240419-195640.jpg">
 
-> [!ALERT]
+> [!IMPORTANT]
 > Essas imagens estão desatualizadas! elas não representam o produto final.
 
 ## Observações
