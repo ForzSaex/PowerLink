@@ -25,7 +25,7 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 <img src="/folder/Captura de tela 2024-04-20 184801.png">
 
 > [!IMPORTANT]
-> Essas imagens estão desatualizadas! elas não representam o produto final.
+> Imagens ilustrativas. não representam o produto final.
 
 ## Observações
 
