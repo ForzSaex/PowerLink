@@ -18,14 +18,14 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 ## Preview do aplicativo
 
 
-<img src="/folder/Screenshot_20240409-182957.jpg">
+<img src="/folder/Captura de tela 2024-04-20 184826.png">
 
-<img src="/folder/Screenshot_20240409-183013.jpg">
+<img src="/folder/Captura de tela 2024-04-20 184814.png">
 
-<img src="/folder/Screenshot_20240419-195640.jpg">
+<img src="/folder/Captura de tela 2024-04-20 184801.png">
 
 > [!IMPORTANT]
-> Essas imagens estão desatualizadas! elas não representam o produto final.
+> Imagens ilustrativas. não representam o produto final.
 
 ## Observações
 
