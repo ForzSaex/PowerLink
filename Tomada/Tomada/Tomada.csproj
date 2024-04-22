@@ -47,6 +47,10 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\desert_sand_night_129966_1920x1080.jpg">
+		  <Generator></Generator>
+		  <CopyToOutputDirectory></CopyToOutputDirectory>
+		</MauiImage>
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
@@ -57,6 +61,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\drawable\desert_sand_night_129966_1920x1080.jpg" />
 	  <None Remove="Resources\Fonts\JosefinSans-Bold.ttf" />
 	  <None Remove="Resources\Fonts\JosefinSans-BoldItalic.ttf" />
 	  <None Remove="Resources\Fonts\JosefinSans-Italic.ttf" />
@@ -68,8 +73,15 @@
 	  <None Remove="Resources\Fonts\JosefinSans-Thin.ttf" />
 	  <None Remove="Resources\Fonts\JosefinSans-ThinItalic.ttf" />
 	  <None Remove="Resources\Images\backgroundimage.jpg" />
+	  <None Remove="Resources\Images\desert_sand_night_129966_1920x1080.jpg" />
 	  <None Remove="Resources\Images\design.png" />
+	  <None Remove="Resources\Images\designtest.png" />
 	  <None Remove="Resources\Images\icons.png" />
+	  <None Remove="Resources\Images\mainbackground.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Include="Resources\drawable\desert_sand_night_129966_1920x1080.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -82,6 +94,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="IntroScreen.xaml.cs">
+	    <DependentUpon>IntroScreen.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Relatório.xaml.cs">
 	    <DependentUpon>Relatório.xaml</DependentUpon>
 	  </Compile>
@@ -91,6 +106,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="IntroScreen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Relatório.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

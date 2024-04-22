@@ -1,4 +1,6 @@
-﻿namespace Tomada
+﻿using SkiaSharp;
+
+namespace Tomada
 {
     public partial class AppShell : Shell
     {

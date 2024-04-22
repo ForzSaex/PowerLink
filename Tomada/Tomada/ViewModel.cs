@@ -5,7 +5,6 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using LiveChartsCore.Defaults;
 using static Tomada.MainPage;
-using System.Diagnostics;
 using System.ComponentModel;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.Measure;
@@ -112,12 +111,12 @@ public class ViewModel
             {
                 Values = _Real,
                 Fill = new LiveChartsCore.SkiaSharpView.Painting.LinearGradientPaint(
-                new [] { new SKColor(0, 255, 250), new SKColor(114, 212, 210, 0) },
+                new [] { new SKColor(16, 17, 19), new SKColor(16, 17, 19, 1) },
                 new SKPoint(1.0f, 0),
                 new SKPoint(1.0f, 1)),
         GeometryFill = null,
                 GeometryStroke = null,
-                Stroke = new SolidColorPaint(new SKColor(0, 0, 0), 2),
+                Stroke = new SolidColorPaint(new SKColor(16, 17, 19), 2),
                 LineSmoothness = 0,
                 IsHoverable = false,
                 

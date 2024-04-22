@@ -8,15 +8,36 @@
     Title="DispositivoDeTomada"       BackgroundColor="Transparent"
     ForegroundColor="White"
     TitleColor="White"
-    DisabledColor="#0a1026"
+    DisabledColor="#171a1f"
     UnselectedColor="#0a1026"
-    FlyoutBackgroundColor="Black"
+    FlyoutBackgroundColor="#171a1f"
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="False"
-    Shell.BackgroundColor="#141940"
-    FlyoutBackdrop="Black">
+    Shell.BackgroundColor="#171a1f"
+    Shell.FlyoutWidth="170">
 
+    
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Teste"
+        ContentTemplate="{DataTemplate local:IntroScreen}"
+        Route="IntroScreen" 
+        Shell.PresentationMode="Animated"
+        IsEnabled="True"
+        IsVisible="True"
+        FlyoutItemIsVisible="False"
+        Shell.NavBarIsVisible="False"
+        Shell.FlyoutBehavior="Disabled">
+            <Shell.TitleView>
+                <Label Text=""
+            FontFamily="JosefinSansThin"
+            TextColor="Black"
+            HorizontalOptions="Start"
+            VerticalOptions="Center"
+                       TranslationX="10"
+                       FontSize="Large"/>
+            </Shell.TitleView>
+        </ShellContent>
         <ShellContent
             Title="Inicio"
         ContentTemplate="{DataTemplate local:MainPage}"
@@ -64,6 +85,27 @@
                        FontSize="Large"/>
             </Shell.TitleView>
         </ShellContent>
+        <ShellContent
+            Title="Teste"
+        ContentTemplate="{DataTemplate local:IntroScreen}"
+        Route="IntroScreen" 
+        Shell.PresentationMode="Animated"
+        IsEnabled="True"
+        IsVisible="True"
+        FlyoutItemIsVisible="False"
+        Shell.NavBarIsVisible="False"
+        Shell.FlyoutBehavior="Disabled">
+            <Shell.TitleView>
+                <Label Text=""
+            FontFamily="JosefinSansThin"
+            TextColor="Black"
+            HorizontalOptions="Start"
+            VerticalOptions="Center"
+                       TranslationX="10"
+                       FontSize="Large"/>
+            </Shell.TitleView>
+        </ShellContent>
+
 
     </FlyoutItem>
 

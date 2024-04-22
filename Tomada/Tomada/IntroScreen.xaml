@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tomada.IntroScreen"
+             x:Name="IntroScreenFade">
+    <StackLayout VerticalOptions="Center">
+        <Label 
+            Text="Bem Vindo!"
+            VerticalOptions="Start" 
+            HorizontalOptions="Center"
+            FontSize="Header"
+            FontFamily="JosefinSansThin"
+            TranslationY="50"
+            Scale="1.2"
+            x:Name="LabelWelcome"/>
+        <CheckBox Color="black" Margin="20,30" TranslationY="280" x:Name="CheckBox" CheckedChanged="CheckBox_CheckedChanged"/>
+        <Label Text="Ao continuar você aceita nossos termos de uso" TranslationY="250" FontSize="Caption" Margin="80,0" x:Name="LabelTerms" VerticalOptions="Center"/>
+        <Button BackgroundColor="#101113" HorizontalOptions="Center" WidthRequest="200" VerticalOptions="End" Text="Começar" TranslationY="270" IsEnabled="False" CornerRadius="20" x:Name="Button" Clicked="Button_Clicked"/>
+        <ActivityIndicator HorizontalOptions="Center" Color="Black" IsRunning="False" x:Name="Loading"/>
+    </StackLayout>
+</ContentPage>

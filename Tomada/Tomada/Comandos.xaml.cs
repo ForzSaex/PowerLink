@@ -1,6 +1,7 @@
 ﻿using static Tomada.MainPage;
 using System.Diagnostics;
 using CommunityToolkit.Maui.Extensions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Tomada
 {
@@ -9,6 +10,7 @@ namespace Tomada
     {
         int opcao = 1;
         ViewModelsSamples.Lines.Basic.ViewModel viewModel = new ViewModelsSamples.Lines.Basic.ViewModel();
+         
         public Comandos()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace Tomada
 
         protected override async void OnAppearing()
         {
-            await Disp1.FadeTo(1);
+            await Layout.FadeTo(1);
             base.OnAppearing();
             DadosCompartilhados.commandStatus = true;
 
@@ -44,7 +46,7 @@ namespace Tomada
         protected override async void OnDisappearing()
         {
             base.OnDisappearing();
-            await Disp1.FadeTo(0);
+            await Layout.FadeTo(0);
             DadosCompartilhados.commandStatus = false;
         }
 
@@ -160,6 +162,8 @@ namespace Tomada
             {
                 await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
             }
+
+            Chart1.Series = viewModel.GaugeSeries1;
         }
 
         private async void OpcaoB_Clicked(object sender, EventArgs e)
@@ -174,6 +178,7 @@ namespace Tomada
             {
                 await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
             }
+            Chart1.Series = viewModel.GaugeSeries2;
         }
 
         private async void OpcaoC_Clicked(object sender, EventArgs e)
@@ -188,6 +193,7 @@ namespace Tomada
             {
                 await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
             }
+            Chart1.Series = viewModel.GaugeSeries3;
         }
 
         private async void OpcaoD_Clicked(object sender, EventArgs e)
@@ -202,6 +208,12 @@ namespace Tomada
             {
                 await ColorAnimationExtensions.BackgroundColorTo(SwitchEnviaComando1, Microsoft.Maui.Graphics.Color.FromArgb("#FFFF4500"), 1, 700, Easing.CubicInOut);
             }
+            Chart1.Series = viewModel.GaugeSeries4;
+        }
+
+        public void Button_Clicked_1(object sender, EventArgs e)
+        {
+            
         }
     }
 

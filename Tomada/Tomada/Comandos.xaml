@@ -5,115 +5,132 @@
              xmlns:vm="clr-namespace:ViewModelsSamples.Lines.Basic"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              xmlns:vwm="clr-namespace:ViewModelsSamples.Lines.Basic"
-             xmlns:local="clr-namespace:Tomada">
+             xmlns:local="clr-namespace:Tomada"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundImageSource="designtest.png"
+             BackgroundColor="Black">
 
-    <ContentPage.Background>
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarStyle="Default" StatusBarColor="Transparent"/>
+    </ContentPage.Behaviors>
 
-        <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Color="#141940"
-                          Offset="0.0" />
-            <GradientStop Color="#070917"
-                          Offset="1.0" />
-        </LinearGradientBrush>
+    <Grid>
+        <Grid.BindingContext>
+            <vwm:ViewModel/>
+        </Grid.BindingContext>
+        <ScrollView>
 
-    </ContentPage.Background>
+            <StackLayout x:Name="Layout">
+                <ScrollView Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="Center"
+                         HeightRequest="80"
+                         Margin="0,20">
+                        <Button Text="Dispositivo1" WidthRequest="200" BackgroundColor="#101113" CornerRadius="20" TextColor="White" Margin="5,0" x:Name="OpcaoA" Clicked="OpcaoA_Clicked" />
+                        <Button Text="Dispositivo2" WidthRequest="200" BackgroundColor="#101113" CornerRadius="20" TextColor="White" Margin="5,0" x:Name="OpcaoB" Clicked="OpcaoB_Clicked" />
+                        <Button Text="Dispositivo3" WidthRequest="200" BackgroundColor="#101113" CornerRadius="20" TextColor="White" Margin="5,0" x:Name="OpcaoC" Clicked="OpcaoC_Clicked" />
+                        <Button Text="Dispositivo4" WidthRequest="200" BackgroundColor="#101113" CornerRadius="20" TextColor="White" Margin="5,0" x:Name="OpcaoD" Clicked="OpcaoD_Clicked" />
+                        </StackLayout>
+                    </ScrollView>
 
-    <ScrollView>
-        <StackLayout>
-            <ScrollView Orientation="Horizontal">
-                <StackLayout Orientation="Horizontal" 
-                             HorizontalOptions="Center"
-                             HeightRequest="80"
-                             Margin="0,20">
-                    <Button Text="Dispositivo1" WidthRequest="200" BackgroundColor="White" CornerRadius="20" TextColor="Black" Margin="5,0" x:Name="OpcaoA" Clicked="OpcaoA_Clicked" />
-                    <Button Text="Dispositivo2" WidthRequest="200" BackgroundColor="White" CornerRadius="20" TextColor="Black" Margin="5,0" x:Name="OpcaoB" Clicked="OpcaoB_Clicked"/>
-                    <Button Text="Dispositivo3" WidthRequest="200" BackgroundColor="White" CornerRadius="20" TextColor="Black" Margin="5,0" x:Name="OpcaoC" Clicked="OpcaoC_Clicked"/>
-                    <Button Text="Dispositivo4" WidthRequest="200" BackgroundColor="White" CornerRadius="20" TextColor="Black" Margin="5,0" x:Name="OpcaoD" Clicked="OpcaoD_Clicked"/>
-                </StackLayout>
-            </ScrollView>
+                <Grid WidthRequest="350" 
+              HeightRequest="700" 
+              BackgroundColor="#101113" 
+              x:Name="Disp1" 
+              TranslationY="0" 
+              HorizontalOptions="Center" 
+              Margin="0,50">
 
-            <Grid WidthRequest="350" 
-                  HeightRequest="700" 
-                  BackgroundColor="#15193b" 
-                  x:Name="Disp1" 
-                  TranslationY="0" 
-                  HorizontalOptions="Center" 
-                  Margin="0,50">
-
-                <Label HorizontalOptions="Center" 
-                       Margin="0,50" 
-                       Text="Nome" 
-                       FontFamily="JosefinSansSemiBold"
-                       FontSize="Large" 
-                       TextColor="White"
-                       x:Name="DispName"/>
-                <Button WidthRequest="100" 
-                        HeightRequest="50" 
-                        VerticalOptions="Start"
-                        TranslationY="45"
-                        BackgroundColor="Transparent"
-                        Clicked="Button_Clicked"
-                        CornerRadius="20"/>
+                    <Label HorizontalOptions="Center" 
+                   Margin="0,50" 
+                   Text="Nome" 
+                   FontFamily="JosefinSansSemiBold"
+                   FontSize="Large" 
+                   TextColor="White"
+                   x:Name="DispName"/>
+                    <Button WidthRequest="100" 
+                    HeightRequest="50" 
+                    VerticalOptions="Start"
+                    TranslationY="45"
+                    BackgroundColor="Transparent"
+                    Clicked="Button_Clicked"
+                    CornerRadius="20"/>
 
 
-                <lvc:PieChart
-                Grid.Row="1"
-                Series="{Binding GaugeSeries1}"
-                InitialRotation="-215"
-                MaxAngle="360"
-                MinValue="0"
-                MaxValue="2500"
-                TranslationY="-80"
-                x:Name="Chart1"
-                HeightRequest="300">
-                    <lvc:PieChart.BindingContext>
-                        <vwm:ViewModel/>
-                    </lvc:PieChart.BindingContext>
-                </lvc:PieChart>
-                <Label HorizontalOptions="Center" 
-                       Margin="0,150" 
-                       Text="0V" 
-                       VerticalOptions="Center" 
-                       FontSize="Large" 
-                       TextColor="White" 
-                       TranslationX="40" 
-                       x:Name="tensao"/>
-                <Label HorizontalOptions="Center" 
-                       Margin="0,150" 
-                       Text="0A" 
-                       TextColor="White"  
-                       TranslationY="0" 
-                       VerticalOptions="Center" 
-                       TranslationX="-40" 
-                       FontSize="Large" 
-                       FontFamily="JosefinSansSemiBold" 
-                       x:Name="corrente"/>
-                <Label HorizontalOptions="Center" 
-                       Margin="0,150" 
-                       Text="Status:" 
-                       VerticalOptions="Start" 
-                       TextColor="White" 
-                       TranslationY="350" 
-                       TranslationX="-80" 
-                       FontSize="Title" 
-                       FontFamily="JosefinSansSemiBold" 
-                       x:Name="status1"/>
-                <Button HorizontalOptions="Center" 
-                        VerticalOptions="End" 
-                        Margin="0,30" 
-                        Scale="1.5" 
-                        x:Name="SwitchEnviaComando1" 
-                        Clicked="SwitchEnviaComando1_Clicked"
-                        CornerRadius="90"
-                        BackgroundColor="OrangeRed">
-                    <Button.Shadow>
-                        <Shadow Brush="White" Offset="0,0" Radius="40">
-                        </Shadow>
-                    </Button.Shadow>
-                </Button>
-            </Grid>
+                    <lvc:PieChart
+            Grid.Row="1"
+            Series="{Binding GaugeSeries1}"
+            InitialRotation="-215"
+            MaxAngle="360"
+            MinValue="0"
+            MaxValue="2500"
+            TranslationY="-80"
+            x:Name="Chart1"
+            HeightRequest="300">
+                        <lvc:PieChart.BindingContext>
+                            <vwm:ViewModel/>
+                        </lvc:PieChart.BindingContext>
+                    </lvc:PieChart>
+                    <Label HorizontalOptions="Center" 
+                   Margin="0,150" 
+                   Text="0V" 
+                   VerticalOptions="Center" 
+                   FontSize="Large" 
+                   TextColor="White" 
+                   TranslationX="40" 
+                   FontFamily="JosefinSansSemiBold" 
+                   x:Name="tensao"/>
+                    <Label HorizontalOptions="Center" 
+                   Margin="0,150" 
+                   Text="0A" 
+                   TextColor="White"  
+                   TranslationY="0" 
+                   VerticalOptions="Center" 
+                   TranslationX="-40" 
+                   FontSize="Large" 
+                   FontFamily="JosefinSansSemiBold" 
+                   x:Name="corrente"/>
+                    <Label HorizontalOptions="Center" 
+                   Margin="0,150" 
+                   Text="Status:" 
+                   VerticalOptions="Start" 
+                   TextColor="White" 
+                   TranslationY="300" 
+                   TranslationX="-80" 
+                   FontSize="Title" 
+                   FontFamily="JosefinSansSemiBold" 
+                   x:Name="status1"/>
+                    <Grid WidthRequest="200" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End" TranslationY="-130">
+                        <Button HorizontalOptions="Center" 
+                            VerticalOptions="End" 
+                            TranslationY="0" 
+                            WidthRequest="200" 
+                            Text="Temporizador" 
+                            Background="#30343b" 
+                            TextColor="White" 
+                            CornerRadius="20"
+                            FontSize="Title"
+                            FontFamily="JosefinSansSemiBold"
+                            Opacity="1"
+                                Clicked="Button_Clicked_1">
+                        </Button>
 
-        </StackLayout>
-    </ScrollView>
+                    </Grid>
+                    <Button HorizontalOptions="Center" 
+                    VerticalOptions="End" 
+                    Margin="0,30" 
+                    Scale="1.5" 
+                    x:Name="SwitchEnviaComando1" 
+                    Clicked="SwitchEnviaComando1_Clicked"
+                    CornerRadius="90"
+                    BackgroundColor="OrangeRed">
+                    </Button>
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+    
 
 </ContentPage>

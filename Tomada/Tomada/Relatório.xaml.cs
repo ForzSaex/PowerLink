@@ -45,11 +45,13 @@ namespace Tomada
         {
                 base.OnAppearing();
             Debug.WriteLine(viewModel._Semanal.Count);
+            Layout.FadeTo(1);
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+            Layout.FadeTo(0);
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.Defaults;
+using CommunityToolkit.Maui.Core.Platform;
 
 namespace Tomada
 {
@@ -16,9 +17,6 @@ namespace Tomada
         public Int64 valorAt;
         ViewModelsSamples.Lines.Basic.ViewModel viewModel = new ViewModelsSamples.Lines.Basic.ViewModel();
 
-
-
-
         public MainPage()
         {
             _timer = new System.Timers.Timer(TimeSpan.FromSeconds(_intervalInSeconds).TotalMilliseconds);
@@ -32,7 +30,6 @@ namespace Tomada
             LoadData();
             ConnectionTest();
             RoomName.Text = Settings.Comodo;
-            
         }
 
         public async Task ConnectionTest()
@@ -53,6 +50,8 @@ namespace Tomada
                         ConsumoAtual.Text = "Consumo atual:" + 0 + "W";
                     });
 
+                    DadosCompartilhados.valorCompartilhado = randnum.Next(1000, 1270);
+
                 }
             }
             catch (Exception ex)
@@ -65,13 +64,14 @@ namespace Tomada
 
         public void FirstTimeOpen()
         {
-            if (Settings.IsFirstTimeOpen == true)
+            if (Settings.IsFirstTimeOpen == false)
             {
                 Settings.IsFirstTimeOpen = false;
                 CreateAppStockFiles();
             }
             
         }
+
         public void LoadData()
         {
             try
@@ -218,7 +218,6 @@ namespace Tomada
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     DadosCompartilhados.valorCompartilhado = long.Parse(await httpResponseMessage.Content.ReadAsStringAsync());
-
                 }
                 else
                 {
@@ -227,26 +226,35 @@ namespace Tomada
             }
             catch (Exception ex)
             {
+
             }
         }
 
         protected override async void OnDisappearing()
         {
             base.OnDisappearing();
-            await Chart1.FadeTo(0);
+            await Layout.FadeTo(0);
             
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await Chart1.FadeTo(1);
+            await Layout.FadeTo(1);
             CreateAppStockFiles();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync($"//{nameof(Relatório)}", true);
+                try
+                {
+                    await Shell.Current.GoToAsync($"//{nameof(IntroScreen)}", true);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                }
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
