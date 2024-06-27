@@ -29,6 +29,12 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 > [!IMPORTANT]
 > Imagens ilustrativas. Não representam o produto final.
 
+## Notificações
+As notificações são enviadas pelo esp32 através de um servidor do Google Firebase, pela função Firebase Cloud Messaging(FCM). As notificações são recebidas independentemente se o usuário está ou não com o aplicativo aberto, graças aos eventos do lifeCycle do .net MAUI. Atualmente há um atraso entre o envio e o recebimento da notificação de aproximadamente 3 minutos. O que creio eu, que não haja uma solução.
+
+## Autenticação
+A autenticação também ocorre pelo servidor do Firebase, porém utilizando o Firebase Authentication, configurado para usar o e-mail e senha para o login.
+
 ## Observações
 
 1.Muitos desses recursos ainda não estão disponíveis, para ver quais deles já estão disponíveis, acesse o projeto disponível no próprio repositório.
