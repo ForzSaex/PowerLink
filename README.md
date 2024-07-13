@@ -35,6 +35,23 @@ As notificações são enviadas pelo esp32 através de um servidor do Google Fir
 ## Autenticação
 A autenticação também ocorre pelo servidor do Firebase, porém utilizando o Firebase Authentication, configurado para usar o e-mail e senha para o login.
 
+## Comunicação
+A comunicação ocorre através de protocolos HTTP. No qual, para que não seja necessário descobrir qual o IP o servidor irá iniciar( já que ele utiliza um IP dinâmico), é utilizado um DNS para a página esp32.local, facilitando a comunicação entre ambas as partes.
+### Trecho do código para definição do DNS
+```
+  if (!MDNS.begin("esp32")) 
+  {
+    Serial.println("Error setting up MDNS responder!");
+    while(1)
+    {
+      delay(1000);
+    }
+  }
+  Serial.println("mDNS responder started");
+  server.begin();
+  MDNS.addService("http", "tcp", 80);
+```
+
 ## Observações
 
 1.Muitos desses recursos ainda não estão disponíveis, para ver quais deles já estão disponíveis, acesse o projeto disponível no próprio repositório.
