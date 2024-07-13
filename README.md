@@ -31,6 +31,26 @@ A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com
 
 ## Notificações
 As notificações são enviadas pelo esp32 através de um servidor do Google Firebase, pela função Firebase Cloud Messaging(FCM). As notificações são recebidas independentemente se o usuário está ou não com o aplicativo aberto, graças aos eventos do lifeCycle do .net MAUI. Atualmente há um atraso entre o envio e o recebimento da notificação de aproximadamente 3 minutos. O que creio eu, que não haja uma solução.
+### Trecho do código para envio das notificações
+``` C++
+void sendNotification(const String& title, const String& body) {
+  if(app.ready())
+  {
+    Messages::Message msg;
+    msg.topic("test");
+    Messages::Notification notification;
+    notification.title(title).body(body);
+    Messages::AndroidConfig androidConfig;
+    androidConfig.priority(Messages::AndroidMessagePriority::_HIGH);
+    Messages::AndroidNotification androidNotification;
+    androidNotification.notification_priority(Messages::NotificationPriority::PRIORITY_HIGH);
+    androidConfig.notification(androidNotification);
+    msg.android(androidConfig);
+    msg.notification(notification);
+    messaging.send(aClient, Messages::Parent(FIREBASE_PROJECT_ID), msg, aResult_no_callback);
+  }
+}
+```
 
 ## Autenticação
 A autenticação também ocorre pelo servidor do Firebase, porém utilizando o Firebase Authentication, configurado para usar o e-mail e senha para o login.
@@ -38,7 +58,7 @@ A autenticação também ocorre pelo servidor do Firebase, porém utilizando o F
 ## Comunicação
 A comunicação ocorre através de protocolos HTTP. No qual, para que não seja necessário descobrir qual o IP o servidor irá iniciar( já que ele utiliza um IP dinâmico), é utilizado um DNS para a página esp32.local, facilitando a comunicação entre ambas as partes.
 ### Trecho do código para definição do DNS
-```
+``` C++
   if (!MDNS.begin("esp32")) 
   {
     Serial.println("Error setting up MDNS responder!");
@@ -57,6 +77,3 @@ A comunicação ocorre através de protocolos HTTP. No qual, para que não seja 
 1.Muitos desses recursos ainda não estão disponíveis, para ver quais deles já estão disponíveis, acesse o projeto disponível no próprio repositório.
 
 2.Outros recursos podem ser adicionados ao projeto futuramente.
-
-> [!NOTE]
-> Diariamente irei atualizar sobre o estado atual do desenvolvimento do projeto.
