@@ -1,5 +1,5 @@
 # Introdução
-## PowerLink é um projeto que está sendo desenvolvido por uma das equipes do 4° período de Eletrotécnica do Instituto Federal do Norte De Minas Gerais - Campus Montes Claros.
+## PowerLink é um projeto que foi desenvolvido por uma das equipes do 4° período de Eletrotécnica de 2024 do Instituto Federal do Norte De Minas Gerais - Campus Montes Claros.
 
 A ideia inicial é um aplicativo que se comunica com um dispositivo equipado com um Esp32 para a coleta e manipulação de dados de tensão e corrente, afim de se obter um valor de potência consumido por um aparelho conectado à este dispositivo. Esses dados são enviados para o aplicativo através de um protocolo de comunicação HTTP (HyperText Transfer Protocol), onde o usuário poderá visualizar os dados coletados pelo dispositivo e realizar o desligamento de qualquer uma das portas através de um comando HTTP POST.
 
@@ -71,9 +71,11 @@ A comunicação ocorre através de protocolos HTTP. No qual, para que não seja 
   server.begin();
   MDNS.addService("http", "tcp", 80);
 ```
-
-## Observações
-
-1.Muitos desses recursos ainda não estão disponíveis, para ver quais deles já estão disponíveis, acesse o projeto disponível no próprio repositório.
-
-2.Outros recursos podem ser adicionados ao projeto futuramente.
+# Projetos futuros
+## Alteração da plataforma
+O principal plano para o futuro do aplicativo é alterar a plataforma no qual ele está operando. A ideia é substitui-la pelo Android Studio, no qual poderá oferecer um desempenho muito superior, um consumo de recursos do usuário menor, e por ser uma plataforma desenvolvida pelo próprio google, é possível uma comunicação mais eficiente com o sistema operacional sem a necessidade de bibliotecas externas. além disso, o firebase já é compatível diretamente com o Android Studio, facilitando a sua implementação.
+Outro ponto importante para essa mudança está relacionada com a aparência. O Android Studio, juntamente com Jetpack Compose, permite com que sejam seguidos os Material Android Guidelines através do Material 3, o que permite que o aplicativo se assemelhe a um aplicativo do sistema. Além disso, também permite a utilização do Dynamic Colors para usuários que utilizam o Android 12+.
+## Substituição do método de comunicação
+Outro projeto em vista para as próximas atualizações está relacionada a comunicação com o PowerLink. Atualmente ocorre um desperdício dos pacotes enviados pelo dispositivo que poderiam ser enviatos. Atualmente são enviados 4 solicitações em um intervalo de 1s, 3 dessas solicitações poderiam ser evitadas já que possuem os mesmos dados da primeira solicitação. E para isso seria necessário uma reformulação de como o ViewModel é inicializado, O que, com o Android Studio, poderia ser evitado com a utilização de Companion Objects, que permitem ser referenciados em qualquer local do aplicativo com uma unica inicialização dos dados do ViewModel.
+## Melhoria da segurança
+Na parte do dispositivo é previsto uma melhoria na segurança da comunicação. Atualmente é utilizado uma comunicação HTTP, o que abre brechas de segurança, como a interceptação de dados e a manipulação do dispositivo por parte de invasores. Para solucionar isso, é previsto a substituição da comunicação HTTP por HTTPS, além de um processo de autenticação do usuário através de uma chave criptografada vinculada a conta do usuário.
